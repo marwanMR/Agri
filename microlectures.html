@@ -166,7 +166,6 @@
           <button class="dots-btn" onclick="toggleMenu(${i})">⋮</button>
           <div class="dots-menu" id="menu-${i}">
             <button onclick="sharePdf('${pdf.link}','${pdf.name}')">📤 مشاركة</button>
-            <button onclick="downloadPdf('${pdf.link}','${pdf.name}')">⬇️ تنزيل</button>
             <button onclick="requestAuth(${i}, 'rename')">✏️ تغيير الاسم</button>
             <button class="delete" onclick="requestAuth(${i}, 'delete')">🗑️ حذف</button>
           </div>
@@ -254,9 +253,7 @@ link = `https://drive.google.com/file/d/${fileId}/preview`;
     function sharePdf(url, name){
       const shareText = `ملف: ${name}\n${url}`;
 function openPdfViewer(url, name){
-      // هنفتحها في تاب جديد باستخدام عارض جوجل
-      const viewerUrl = `https://docs.google.com/gview?url=${encodeURIComponent(url)}&embedded=true`;
-      window.open(viewerUrl, '_blank');
+      window.open(url, '_blank');
         }
       
       // 1. لو الموبايل بيدعم المشاركة الاصلية - اندرويد/ايفون
