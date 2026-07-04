@@ -114,7 +114,6 @@
       <h3>➕ اضافة PDF جديد</h3>
       <input type="text" id="pdfName" placeholder="اسم الملف: مثال محاضرة 1">
       <input type="url" id="pdfLink" placeholder="حط لينك جوجل درايف هنا">
-      <input type="url" id="pdfCover" placeholder="لينك صورة الغلاف اختياري">
       <div class="popup-btns">
         <button class="popup-btn btn-confirm" id="savePdf">حفظ</button>
         <button class="popup-btn btn-cancel" id="cancelAdd">الغاء</button>
@@ -222,7 +221,7 @@ if(currentAction === 'delete') deletePdf(currentIndex);
     document.getElementById('savePdf').onclick = () => {
       const name = document.getElementById('pdfName').value.trim();
       let link = document.getElementById('pdfLink').value.trim();
-      const cover = document.getElementById('pdfCover').value.trim();
+      const cover = "What-are-bacteria-placeholder-1.jpg";
       if(!name ||!link) return alert('لازم اسم ولينك');
 
       if(link.includes('drive.google.com/file/d/')){
