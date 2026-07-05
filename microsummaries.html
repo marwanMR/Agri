@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الأحياء الدقيقة - الفرقة التانية زراعة</title>
+  <link rel="icon" href="https://i.postimg.cc/k5TtVWJL/Picsart-26-05-24-01-26-07-243.png">
+  <style>
+    :root{
+      --green:#1f7a4c;--green-dark:#0f4d2a;--bg:#e8f5e9;--card:#fff;--text:#1f2937;--shadow:rgba(0,0,0,.1)
+    }
+    [data-theme="dark"]{
+      --green:#2ecc71;--green-dark:#1e8449;--bg:#121212;--card:#1e1e1e;--text:#e0e0e0;--shadow:rgba(0,0,0,.3)
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Cairo',sans-serif;background:var(--bg);background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.04"><path fill="%231f7a4c" d="M20 20 Q40 5 60 20 T100 20 V100 H0 Z"/></svg>');background-size:100px 100px;color:var(--text);min-height:100vh;padding-bottom:90px;transition:.3s}
+
+.cover-header{position:relative;width:100%;height:300px;background:#000}
+.cover-header img{width:100%;height:100%;object-fit:cover; object-position: center 50%;}
+.cover-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55))}
+.cover-content{position:absolute;bottom:20px;right:20px;left:20px;color:#fff;text-align:right}
+.cover-content h1{font-size:1.9rem;text-shadow:0 2px 10px #000;margin-bottom:12px}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.2);backdrop-filter:blur(5px);color:#fff;padding:8px 15px;border-radius:8px;text-decoration:none;font-weight:700;transition:.2s;border:1px solid rgba(255,255,255,.3)}
+.back-btn:hover{background:rgba(255,255,255,.3)}
+
+.top-bar{display:flex;justify-content:center;gap:15px;margin-top:20px;flex-wrap:wrap}
+.btn{background:linear-gradient(180deg,var(--green),var(--green-dark));color:#fff;padding:12px 22px;border-radius:12px;text-decoration:none;font-size:.95rem;font-weight:700;display:inline-flex;flex-direction:column;align-items:center;gap:5px;box-shadow:0 4px 0 var(--green-dark);transition:.1s;border:none;cursor:pointer;min-width:150px}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--green-dark)}
+.btn svg{width:22px;height:22px;fill:#fff}
+.btn-whatsapp{background:linear-gradient(180deg,#25D366,#128C7E);box-shadow:0 4px 0 #128C7E}
+.btn-theme{background:linear-gradient(180deg,var(--green),var(--green-dark));border:none;box-shadow:0 4px 0 var(--green-dark)}
+
+.container{max-width:900px;margin:0 auto;padding:30px 20px}
+.grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:20px}
+    @media (max-width: 768px){.grid{grid-template-columns:repeat(2, 1fr)}}
+    @media (max-width: 480px){.grid{grid-template-columns:1fr}}
+
+.pdf-card{background:var(--card);border-radius:18px;padding:15px;text-align:center;box-shadow:0 8px 15px var(--shadow),inset 0 -3px 0 var(--green-dark);transition:.2s;border-top:4px solid var(--green);position:relative;display:flex;flex-direction:column;gap:12px}
+.pdf-card:hover{transform:translateY(-6px)}
+.pdf-cover{width:100%;height:180px;background:#ddd;border-radius:12px;object-fit:cover}
+.pdf-name{color:var(--green-dark);font-size:1.1rem;font-weight:700}
+.btn-main{background:linear-gradient(180deg,var(--green),var(--green-dark));color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-size:1rem;font-weight:700;box-shadow:0 3px 0 var(--green-dark);transition:.1s;margin-top:auto;border:none;cursor:pointer}
+.btn-main:active{transform:translateY(3px);box-shadow:0 0 0 var(--green-dark)}
+
+.dots-btn{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.4);color:#fff;border:none;width:35px;height:35px;border-radius:50%;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.dots-menu{display:none;position:absolute;top:50px;left:10px;background:var(--card);border-radius:10px;box-shadow:0 5px 15px var(--shadow);z-index:10;min-width:150px;overflow:hidden}
+.dots-menu.active{display:block}
+.dots-menu button{width:100%;padding:12px;border:none;background:none;text-align:right;font-family:'Cairo';font-size:.95rem;cursor:pointer;color:var(--text)}
+.dots-menu button:hover{background:var(--bg)}
+.dots-menu button.delete{color:#e74c3c}
+
+.fab{position:fixed;bottom:25px;right:25px;width:60px;height:60px;background:linear-gradient(180deg,var(--green),var(--green-dark));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;border:none;box-shadow:0 6px 0 var(--green-dark), 0 10px 20px rgba(0,0,0,.2);cursor:pointer;z-index:999}
+
+.popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:1000}
+.popup-overlay.active{display:flex}
+.popup-box{background:var(--card);padding:25px;border-radius:20px;width:90%;max-width:400px}
+.popup-box h3{color:var(--green-dark);margin-bottom:15px;text-align:center}
+.popup-box input{width:100%;padding:12px;border:2px solid var(--green);border-radius:10px;font-family:'Cairo';font-size:1rem;background:var(--bg);color:var(--text);margin-bottom:12px}
+.popup-btns{display:flex;gap:10px}
+.popup-btn{flex:1;padding:12px;border:none;border-radius:10px;font-family:'Cairo';font-weight:700;cursor:pointer;font-size:1rem}
+.btn-confirm{background:var(--green);color:#fff}
+.btn-cancel{background:#ccc;color:#333}
+
+    footer{text-align:center;padding:30px 20px;color:var(--green-dark);font-size:.9rem;font-weight:600}
+  </style>
+</head>
+<body>
+  <header class="cover-header">
+    <img src="What-are-bacteria-placeholder-1.jpg" alt="Cover">
+    <div class="cover-overlay"></div>
+    <div class="cover-content">
+      <h1>الأحياء الدقيقة 🦠</h1>
+      <a href="term1.html" class="back-btn">← رجوع للمواد</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="top-bar">
+      <button class="btn btn-theme" id="themeBtn">
+        <svg id="themeIcon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span id="themeText">تفعيل الوضع الليلي</span>
+      </button>
+<a href="https://wa.me/201229816812" target="_blank" class="btn btn-whatsapp">
+  <svg viewBox="0 0 24 24" width="22" height="22">
+    <path fill="#fff" d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l-1.018 3.716 3.797-1zm11.407-3.832c-.078-.132-.28-.217-.459-.31-.177-.093-1.048-.515-1.21-.58-.162-.066-.28-.097-.4.098-.12.195-.467.58-.57.696-.103.115-.206.13-.383.049-.177-.09-.744-.272-1.42-.867-.525-.47-.87-1.05-.97-1.23-.102-.18-.01-.28.07-.37.07-.07.163-.17.247-.26.083-.09.11-.15.166-.25.055-.1.028-.19-.013-.274-.041-.084-.37-.9-.508-1.23-.134-.32-.27-.28-.37-.28-.099-.01-.21-.01-.32-.01-.11 0-.29.04-.44.2-.15.17-.58.55-.58 1.35s.593 1.55.676 1.66c.083.1 1.169 1.785 2.833 2.433.395.17.703.27.945.35.397.13.76.11 1.05-.07.28-.18 1.21-.495 1.38-.97.17-.48.17-.89.12-.97z"/>
+  </svg>
+  <span>التواصل مع الدعم</span>
+</a>
+    </div>
+
+    <div class="grid" id="pdfGrid" style="margin-top:25px;"></div>
+  </div>
+
+  <button class="fab" id="fabBtn">+</button>
+
+  <div class="popup-overlay" id="passPopup">
+    <div class="popup-box">
+      <h3 id="passTitle">🔒 دخول الادمن</h3>
+      <input type="password" id="passInput" placeholder="دخل الباسورد">
+      <div class="popup-btns">
+        <button class="popup-btn btn-confirm" id="confirmPass">تأكيد</button>
+        <button class="popup-btn btn-cancel" id="cancelPass">الغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup-overlay" id="addPopup">
+    <div class="popup-box">
+      <h3>➕ اضافة PDF جديد</h3>
+      <input type="text" id="pdfName" placeholder="اسم الملف: مثال محاضرة 1">
+      <input type="url" id="pdfLink" placeholder="حط لينك جوجل درايف هنا">
+      <div class="popup-btns">
+        <button class="popup-btn btn-confirm" id="savePdf">حفظ</button>
+        <button class="popup-btn btn-cancel" id="cancelAdd">الغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>اتعمل بحب لطلبة زراعة 💚 <br>تصميم وبرمجة: مروان محمد © 2026</footer>
+
+  <script>
+    const ADMIN_PASSWORD = "marwan_1911";
+    const STORAGE_KEY = 'micro_pdfs_v2';
+    let pdfs = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    let currentAction = null;
+    let currentIndex = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeBtn');
+      const icon = document.getElementById('themeIcon');
+      const text = document.getElementById('themeText');
+      const html = document.documentElement;
+
+      function setTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (theme === 'dark') {
+          icon.innerHTML = '<path d="M12 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1m0 14a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1M4.22 5.64a1 1 0 0 1 1.42 0l1.42 1.42a1 1 0 0 1-1.42 1.42L4.22 7.06a1 1 0 0 1 0-1.42m12.02 12.02a1 1 0 0 1 1.42 0l1.42 1.42a1 1 0 0 1-1.42 1.42l-1.42-1.42a1 1 0 0 1 0-1.42M3 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1m16 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1M5.64 18.36a1 1 0 0 1 0-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.42a1 1 0 0 1-1.42 0m12.02-12.02a1 1 0 0 1 0-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.42a1 1 0 0 1-1.42 0M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>';
+          text.textContent = 'إلغاء تفعيل الوضع الليلي';
+        } else {
+          icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+          text.textContent = 'تفعيل الوضع الليلي';
+        }
+      }
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      setTheme(savedTheme);
+      btn.onclick = () => setTheme(html.getAttribute('data-theme') === 'dark'? 'light' : 'dark');
+      renderPDFs();
+    });
+
+    function renderPDFs(){
+      const grid = document.getElementById('pdfGrid');
+      if(pdfs.length === 0){
+        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;opacity:.6;margin-top:40px;">مفيش ملفات PDF لسه. دوس + عشان تضيف</p>';
+        return;
+      }
+      grid.innerHTML = pdfs.map((pdf, i) => `
+        <div class="pdf-card">
+          <button class="dots-btn" onclick="toggleMenu(${i})">⋮</button>
+          <div class="dots-menu" id="menu-${i}">
+            <button onclick="sharePdf('${pdf.link}','${pdf.name}')">📤 مشاركة</button>
+            <button onclick="requestAuth(${i}, 'rename')">✏️ تغيير الاسم</button>
+            <button class="delete" onclick="requestAuth(${i}, 'delete')">🗑️ حذف</button>
+          </div>
+          <img src="${pdf.cover || 'https://i.postimg.cc/gJKJtT2n/What-are-bacteria-placeholder-1.jpg'}" class="pdf-cover">
+          <div class="pdf-name">${pdf.name}</div>
+          <button class="btn-main" onclick="openPdfViewer('${pdf.link}','${pdf.name}')">فتح PDF</button>
+        </div>
+      `).join('');
+    }
+
+    function toggleMenu(i){
+      document.querySelectorAll('.dots-menu').forEach(m => m.classList.remove('active'));
+      document.getElementById(`menu-${i}`).classList.toggle('active');
+    }
+    document.body.onclick = (e) => {
+      if(!e.target.closest('.dots-btn') &&!e.target.closest('.dots-menu')) document.querySelectorAll('.dots-menu').forEach(m => m.classList.remove('active'));
+    }
+
+    function requestAuth(i, action){
+      currentIndex = i;
+      currentAction = action;
+      document.getElementById('passTitle').textContent = action === 'delete'? '🔒 تأكيد الحذف' : '🔒 تأكيد التعديل';
+      document.getElementById('passPopup').classList.add('active');
+      document.getElementById('passInput').focus();
+    }
+
+    document.getElementById('confirmPass').onclick = () => {
+      const pass = document.getElementById('passInput').value;
+      if(pass === ADMIN_PASSWORD){
+        document.getElementById('passPopup').classList.remove('active');
+        document.getElementById('passInput').value = '';
+        if(currentAction === 'delete') deletePdf(currentIndex);
+        if(currentAction === 'rename') renamePdf(currentIndex);
+        if(currentAction === 'add') document.getElementById('addPopup').classList.add('active');
+        currentAction = null; currentIndex = null;
+      } else {alert('الباسورد غلط ❌');}
+    }
+    document.getElementById('cancelPass').onclick = () => {
+      document.getElementById('passPopup').classList.remove('active');
+      document.getElementById('passInput').value = '';
+      currentAction = null; currentIndex = null;
+    }
+
+    document.getElementById('fabBtn').onclick = () => {
+      requestAuth(null, 'add');
+    }
+    document.getElementById('cancelAdd').onclick = () => document.getElementById('addPopup').classList.remove('active');
+
+    document.getElementById('savePdf').onclick = () => {
+      const name = document.getElementById('pdfName').value.trim();
+      let link = document.getElementById('pdfLink').value.trim();
+      const cover = "What-are-bacteria-placeholder-1.jpg";
+      if(!name ||!link) return alert('لازم اسم ولينك');
+
+      if(link.includes('drive.google.com/file/d/')){
+        const fileId = link.split('/d/')[1].split('/')[0];
+        link = `https://drive.google.com/file/d/${fileId}/preview`;
+      }
+      pdfs.unshift({name, link, cover});
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(pdfs));
+      renderPDFs();
+      document.getElementById('addPopup').classList.remove('active');
+      document.getElementById('pdfName').value = '';document.getElementById('pdfLink').value = '';
+    }
+
+    function renamePdf(i){
+      const newName = prompt('الاسم الجديد:', pdfs[i].name);
+      if(newName){pdfs[i].name = newName; localStorage.setItem(STORAGE_KEY, JSON.stringify(pdfs)); renderPDFs();}
+    }
+    function deletePdf(i){
+      if(confirm('متأكد عايز تمسح؟')){pdfs.splice(i,1); localStorage.setItem(STORAGE_KEY, JSON.stringify(pdfs)); renderPDFs();}
+    }
+
+    function openPdfViewer(url, name){
+      if(url.includes('/preview')){
+        window.open(url, '_blank');
+      } else if(url.includes('drive.google.com')){
+        const fileId = url.split('/d/')[1].split('/')[0];
+        window.open(`https://drive.google.com/file/d/${fileId}/preview`, '_blank');
+      } else {
+        window.open(url, '_blank');
+      }
+    }
+
+    function sharePdf(url, name){
+      const shareText = `${name}\n${url}`;
+      if(navigator.share){
+        navigator.share({title: name, text: shareText, url: url}).catch(err => console.log('تم الغاء المشاركة'));
+        return;
+      }
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
