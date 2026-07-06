@@ -120,6 +120,12 @@
     const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvQwjDpTF_5WaD8DDcmH9Me7DbjG_k2-I_XYCf-OL5q4R_G6xuXiIIDBK9k6foHVdWjyRlpLlIoLDJ/pub?output=csv";
     let pdfs = [];
 
+    // 1. ضفنا دي جديدة: شاشة التحميل
+    function showLoading(){
+      const grid = document.getElementById('pdfGrid');
+      grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;opacity:.8;margin-top:40px;">⏳ جاري تحميل المحاضرات...</p>';
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const btn = document.getElementById('themeBtn');
       const icon = document.getElementById('themeIcon');
@@ -141,6 +147,7 @@
       setTheme(savedTheme);
       btn.onclick = () => setTheme(html.getAttribute('data-theme') === 'dark'? 'light' : 'dark');
 
+      showLoading(); // 2. ضفنا دي: ورينا التحميل الاول
       loadFromSheet();
       document.getElementById('fabBtn').style.display = 'none'; // اخفاء زرار +
     });
@@ -189,6 +196,13 @@
     }
 
     async function loadFromSheet(){
+      // 3. ضفنا دي: الكاش عشان تظهر فورا تاني مرة
+      const cached = localStorage.getItem('micro_lectures_cache');
+      if(cached){
+        pdfs = JSON.parse(cached);
+        renderPDFs();
+      }
+
       try {
         const res = await fetch(SHEET_URL);
         const text = await res.text();
@@ -210,9 +224,12 @@
             pdfs.push({name: name.trim(), link: fixedLink, cover: "What-are-bacteria-placeholder-1.jpg"});
           }
         });
+
+        localStorage.setItem('micro_lectures_cache', JSON.stringify(pdfs)); // 4. ضفنا دي: نحفظ الجديد
         renderPDFs();
       } catch(e) {
         console.error("مشكلة في تحميل الشيت:", e);
+        document.getElementById('pdfGrid').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:red;">فشل تحميل البيانات من الشيت</p>';
       }
     }
 </script>
