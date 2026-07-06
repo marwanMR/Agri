@@ -185,7 +185,7 @@
       window.open(url, '_blank');
     }
 
-function sharePdf(url, name){
+    function sharePdf(url, name){
       const shareText = `${name}\n${url}`;
       if(navigator.share){
         navigator.share({title: name, text: shareText, url: url}).catch(err => console.log('تم الغاء المشاركة'));
@@ -193,7 +193,7 @@ function sharePdf(url, name){
       }
       const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
       window.open(whatsappUrl, '_blank');
-  }
+    }
 
     async function loadFromSheet(){
       // 3. ضفنا دي: الكاش عشان تظهر فورا تاني مرة
