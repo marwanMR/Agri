@@ -185,15 +185,44 @@
       window.open(url, '_blank');
     }
 
-    function sharePdf(url, name){
+    async function sharePdf(url, name){
+  try {
+    // 1. نحول لينك المعاينة للينك تحميل مباشر من درايف
+    let downloadUrl = url;
+    if(url.includes('/preview')){
+      const fileId = url.split('/d/')[1].split('/')[0];
+      downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+    }
+
+    // 2. نحمل الملف
+    const response = await fetch(downloadUrl);
+    const blob = await response.blob();
+    const file = new File([blob], name + ".pdf", { type: "application/pdf" });
+
+    // 3. نشيره كملف لو المتصفح بيدعم
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        title: name,
+        text: name,
+        files: [file]
+      });
+      console.log('تمت المشاركة كملف');
+    } else {
+      // لو المتصفح ميدعمش ملفات، نرجع للينك العادي
       const shareText = `${name}\n${url}`;
       if(navigator.share){
-        navigator.share({title: name, text: shareText, url: url}).catch(err => console.log('تم الغاء المشاركة'));
-        return;
+        navigator.share({title: name, text: shareText, url: url});
+      } else {
+        window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
       }
-      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
-      window.open(whatsappUrl, '_blank');
     }
+  } catch(e) {
+    console.error("خطأ في المشاركة:", e);
+    alert("مش عارف احمل الملف. هبعتلك اللينك بدلها");
+    const shareText = `${name}\n${url}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+  }
+  }
 
     async function loadFromSheet(){
       // 3. ضفنا دي: الكاش عشان تظهر فورا تاني مرة
