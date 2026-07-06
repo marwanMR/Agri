@@ -217,7 +217,7 @@
           let fixedLink = link? link.trim() : '';
           if(fixedLink.includes('drive.google.com/file/d/')){
             const fileId = fixedLink.split('/d/')[1].split('/')[0];
-            fixedLink = `https://drive.google.com/file/d/${fileId}/preview`;
+            fixedLink = `https://drive.google.com/uc?export=download&id=${fileId}`;
           }
 
           if(subject && subject.trim() === "Microbiology" && section && section.trim() === "محاضرات"){
