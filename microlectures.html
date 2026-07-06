@@ -116,12 +116,9 @@
 
   <footer>اتعمل بحب لطلبة زراعة 💚 <br>تصميم وبرمجة: مروان محمد © 2026</footer>
 
-  <script>
-    const ADMIN_PASSWORD = "marwan_1911";
-    const STORAGE_KEY = 'micro_pdfs_v2';
-    let pdfs = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    let currentAction = null;
-    let currentIndex = null;
+<script>
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvQwjDpTF_5WaD8DDcmH9Me7DbjG_k2-I_XYCf-OL5q4R_G6xuXiIIDBK9k6foHVdWjyRlpLlIoLDJ/pub?output=csv";
+    let pdfs = [];
 
     document.addEventListener('DOMContentLoaded', () => {
       const btn = document.getElementById('themeBtn');
@@ -143,13 +140,15 @@
       const savedTheme = localStorage.getItem('theme') || 'light';
       setTheme(savedTheme);
       btn.onclick = () => setTheme(html.getAttribute('data-theme') === 'dark'? 'light' : 'dark');
-      renderPDFs();
+
+      loadFromSheet();
+      document.getElementById('fabBtn').style.display = 'none'; // اخفاء زرار +
     });
 
     function renderPDFs(){
       const grid = document.getElementById('pdfGrid');
       if(pdfs.length === 0){
-        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;opacity:.6;margin-top:40px;">مفيش ملفات PDF لسه. دوس + عشان تضيف</p>';
+        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;opacity:.6;margin-top:40px;">لسه مفيش محاضرات نزلت. تابع الشيت</p>';
         return;
       }
       grid.innerHTML = pdfs.map((pdf, i) => `
@@ -157,8 +156,6 @@
           <button class="dots-btn" onclick="toggleMenu(${i})">⋮</button>
           <div class="dots-menu" id="menu-${i}">
             <button onclick="sharePdf('${pdf.link}','${pdf.name}')">📤 مشاركة</button>
-            <button onclick="requestAuth(${i}, 'rename')">✏️ تغيير الاسم</button>
-            <button class="delete" onclick="requestAuth(${i}, 'delete')">🗑️ حذف</button>
           </div>
           <img src="${pdf.cover || 'https://i.postimg.cc/gJKJtT2n/What-are-bacteria-placeholder-1.jpg'}" class="pdf-cover">
           <div class="pdf-name">${pdf.name}</div>
@@ -171,74 +168,14 @@
       document.querySelectorAll('.dots-menu').forEach(m => m.classList.remove('active'));
       document.getElementById(`menu-${i}`).classList.toggle('active');
     }
+
     document.body.onclick = (e) => {
-      if(!e.target.closest('.dots-btn') &&!e.target.closest('.dots-menu')) document.querySelectorAll('.dots-menu').forEach(m => m.classList.remove('active'));
-    }
-
-    function requestAuth(i, action){
-      currentIndex = i;
-      currentAction = action;
-      document.getElementById('passTitle').textContent = action === 'delete'? '🔒 تأكيد الحذف' : '🔒 تأكيد التعديل';
-      document.getElementById('passPopup').classList.add('active');
-      document.getElementById('passInput').focus();
-    }
-
-    document.getElementById('confirmPass').onclick = () => {
-      const pass = document.getElementById('passInput').value;
-      if(pass === ADMIN_PASSWORD){
-        document.getElementById('passPopup').classList.remove('active');
-        document.getElementById('passInput').value = '';
-        if(currentAction === 'delete') deletePdf(currentIndex);
-        if(currentAction === 'rename') renamePdf(currentIndex);
-        if(currentAction === 'add') document.getElementById('addPopup').classList.add('active');
-        currentAction = null; currentIndex = null;
-      } else {alert('الباسورد غلط ❌');}
-    }
-    document.getElementById('cancelPass').onclick = () => {
-      document.getElementById('passPopup').classList.remove('active');
-      document.getElementById('passInput').value = '';
-      currentAction = null; currentIndex = null;
-    }
-
-    document.getElementById('fabBtn').onclick = () => {
-      requestAuth(null, 'add');
-    }
-    document.getElementById('cancelAdd').onclick = () => document.getElementById('addPopup').classList.remove('active');
-
-    document.getElementById('savePdf').onclick = () => {
-      const name = document.getElementById('pdfName').value.trim();
-      let link = document.getElementById('pdfLink').value.trim();
-      const cover = "What-are-bacteria-placeholder-1.jpg";
-      if(!name ||!link) return alert('لازم اسم ولينك');
-
-      if(link.includes('drive.google.com/file/d/')){
-        const fileId = link.split('/d/')[1].split('/')[0];
-        link = `https://drive.google.com/file/d/${fileId}/preview`;
-      }
-      pdfs.unshift({name, link, cover});
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(pdfs));
-      renderPDFs();
-      document.getElementById('addPopup').classList.remove('active');
-      document.getElementById('pdfName').value = '';document.getElementById('pdfLink').value = '';
-    }
-
-    function renamePdf(i){
-      const newName = prompt('الاسم الجديد:', pdfs[i].name);
-      if(newName){pdfs[i].name = newName; localStorage.setItem(STORAGE_KEY, JSON.stringify(pdfs)); renderPDFs();}
-    }
-    function deletePdf(i){
-      if(confirm('متأكد عايز تمسح؟')){pdfs.splice(i,1); localStorage.setItem(STORAGE_KEY, JSON.stringify(pdfs)); renderPDFs();}
+      if(!e.target.closest('.dots-btn') &&!e.target.closest('.dots-menu'))
+        document.querySelectorAll('.dots-menu').forEach(m => m.classList.remove('active'));
     }
 
     function openPdfViewer(url, name){
-      if(url.includes('/preview')){
-        window.open(url, '_blank');
-      } else if(url.includes('drive.google.com')){
-        const fileId = url.split('/d/')[1].split('/')[0];
-        window.open(`https://drive.google.com/file/d/${fileId}/preview`, '_blank');
-      } else {
-        window.open(url, '_blank');
-      }
+      window.open(url, '_blank');
     }
 
     function sharePdf(url, name){
@@ -250,6 +187,34 @@
       const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
       window.open(whatsappUrl, '_blank');
     }
-  </script>
+
+    async function loadFromSheet(){
+      try {
+        const res = await fetch(SHEET_URL);
+        const text = await res.text();
+        const rows = text.split('\n').slice(1);
+        pdfs = [];
+
+        rows.forEach(row => {
+          if(!row.trim()) return;
+          const [name, link, section, subject] = row.split(',');
+          if(!name) return;
+
+          let fixedLink = link? link.trim() : '';
+          if(fixedLink.includes('drive.google.com/file/d/')){
+            const fileId = fixedLink.split('/d/')[1].split('/')[0];
+            fixedLink = `https://drive.google.com/file/d/${fileId}/preview`;
+          }
+
+          if(subject && subject.trim() === "Microbiology" && section && section.trim() === "محاضرات"){
+            pdfs.push({name: name.trim(), link: fixedLink, cover: "What-are-bacteria-placeholder-1.jpg"});
+          }
+        });
+        renderPDFs();
+      } catch(e) {
+        console.error("مشكلة في تحميل الشيت:", e);
+      }
+    }
+</script>
 </body>
 </html>
