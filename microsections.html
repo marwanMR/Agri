@@ -197,7 +197,7 @@
 
     async function loadFromSheet(){
       // 3. ضفنا دي: الكاش عشان تظهر فورا تاني مرة
-      const cached = localStorage.getItem('micro_lectures_cache');
+      const cached = localStorage.getItem('micro_sections_cache');
       if(cached){
         pdfs = JSON.parse(cached);
         renderPDFs();
@@ -225,7 +225,7 @@
           }
         });
 
-        localStorage.setItem('micro_lectures_cache', JSON.stringify(pdfs)); // 4. ضفنا دي: نحفظ الجديد
+        localStorage.setItem('micro_sections_cache', JSON.stringify(pdfs)); // 4. ضفنا دي: نحفظ الجديد
         renderPDFs();
       } catch(e) {
         console.error("مشكلة في تحميل الشيت:", e);
