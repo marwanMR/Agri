@@ -164,7 +164,7 @@
           <div class="dots-menu" id="menu-${i}">
             <button onclick="sharePdf('${pdf.link}','${pdf.name}')">📤 مشاركة</button>
           </div>
-          <img src="${pdf.cover || 'https://i.postimg.cc/gJKJtT2n/What-are-bacteria-placeholder-1.jpg'}" class="pdf-cover">
+          <img src="${pdf.cover || 'biochemistry-shutterstock_187967735_web.jpg'}" class="pdf-cover">
           <div class="pdf-name">${pdf.name}</div>
           <button class="btn-main" onclick="openPdfViewer('${pdf.link}','${pdf.name}')">فتح PDF</button>
         </div>
@@ -221,7 +221,7 @@
           }
 
           if(subject && subject.trim() === "Biochemistry" && section && section.trim() === "محاضرات"){
-            pdfs.push({name: name.trim(), link: fixedLink, cover: "What-are-bacteria-placeholder-1.jpg"});
+            pdfs.push({name: name.trim(), link: fixedLink, cover: "biochemistry-shutterstock_187967735_web.jpg"});
           }
         });
 
