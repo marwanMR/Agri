@@ -197,7 +197,7 @@
 
     async function loadFromSheet(){
       // 3. ضفنا دي: الكاش عشان تظهر فورا تاني مرة
-      const cached = localStorage.getItem('micro_lectures_cache');
+      const cached = localStorage.getItem('micro_summaries_cache');
       if(cached){
         pdfs = JSON.parse(cached);
         renderPDFs();
