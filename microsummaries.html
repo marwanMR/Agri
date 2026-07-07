@@ -69,7 +69,7 @@
     <img src="What-are-bacteria-placeholder-1.jpg" alt="Cover">
     <div class="cover-overlay"></div>
     <div class="cover-content">
-      <h1> ملخصات الأحياء الدقيقة 🦠</h1>
+      <h1>الأحياء الدقيقة 🦠</h1>
       <a href="term1.html" class="back-btn">← رجوع للمواد</a>
     </div>
   </header>
@@ -123,7 +123,7 @@
     // 1. ضفنا دي جديدة: شاشة التحميل
     function showLoading(){
       const grid = document.getElementById('pdfGrid');
-      grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;opacity:.8;margin-top:40px;">⏳ جاري تحميل الملخصات...</p>';
+      grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;opacity:.8;margin-top:40px;">⏳ جاري تحميل المحاضرات...</p>';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -136,7 +136,7 @@
         html.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
         if (theme === 'dark') {
-محاضراتicon.innerHTML = '<path d="M12 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1m0 14a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1M4.22 5.64a1 1 0 0 1 1.42 0l1.42 1.42a1 1 0 0 1-1.42 1.42L4.22 7.06a1 1 0 0 1 0-1.42m12.02 12.02a1 1 0 0 1 1.42 0l1.42 1.42a1 1 0 0 1-1.42 1.42l-1.42-1.42a1 1 0 0 1 0-1.42M3 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1m16 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1M5.64 18.36a1 1 0 0 1 0-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.42a1 1 0 0 1-1.42 0m12.02-12.02a1 1 0 0 1 0-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.42a1 1 0 0 1-1.42 0M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>';
+          icon.innerHTML = '<path d="M12 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1m0 14a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1M4.22 5.64a1 1 0 0 1 1.42 0l1.42 1.42a1 1 0 0 1-1.42 1.42L4.22 7.06a1 1 0 0 1 0-1.42m12.02 12.02a1 1 0 0 1 1.42 0l1.42 1.42a1 1 0 0 1-1.42 1.42l-1.42-1.42a1 1 0 0 1 0-1.42M3 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1m16 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1M5.64 18.36a1 1 0 0 1 0-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.42a1 1 0 0 1-1.42 0m12.02-12.02a1 1 0 0 1 0-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.42a1 1 0 0 1-1.42 0M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>';
           text.textContent = 'إلغاء تفعيل الوضع الليلي';
         } else {
           icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
@@ -155,7 +155,7 @@
     function renderPDFs(){
       const grid = document.getElementById('pdfGrid');
       if(pdfs.length === 0){
-        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;opacity:.6;margin-top:40px;">لسه مفيش ملخصات نزلت. تابع الشيت</p>';
+        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;opacity:.6;margin-top:40px;">لسه مفيش محاضرات نزلت. تابع الشيت</p>';
         return;
       }
       grid.innerHTML = pdfs.map((pdf, i) => `
@@ -197,7 +197,7 @@
 
     async function loadFromSheet(){
       // 3. ضفنا دي: الكاش عشان تظهر فورا تاني مرة
-      const cached = localStorage.getItem('micro_summaries_cache');
+      const cached = localStorage.getItem('micro_lectures_cache');
       if(cached){
         pdfs = JSON.parse(cached);
         renderPDFs();
@@ -220,12 +220,12 @@
             fixedLink = `https://drive.google.com/file/d/${fileId}/preview`;
           }
 
-          if(subject && subject.trim() === "Microbiology" && section && section.trim() === "ملخصات"){
+          if(subject && subject.trim() === "Microbiology" && section && section.trim() === "محاضرات"){
             pdfs.push({name: name.trim(), link: fixedLink, cover: "What-are-bacteria-placeholder-1.jpg"});
           }
         });
 
-        localStorage.setItem('micro_summaries_cache', JSON.stringify(pdfs)); // 4. ضفنا دي: نحفظ الجديد
+        localStorage.setItem('micro_lectures_cache', JSON.stringify(pdfs)); // 4. ضفنا دي: نحفظ الجديد
         renderPDFs();
       } catch(e) {
         console.error("مشكلة في تحميل الشيت:", e);
