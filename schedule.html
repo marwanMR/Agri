@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>جدول المحاضرات و السكاشن</title>
+  <title>جدول المحاضرات والسكاشن</title>
   <link rel="icon" href="Picsart_26-05-24_01-26-07-243.png">
   <style>
     :root{
@@ -29,45 +29,36 @@
     .btn-theme:active{box-shadow:0 0 0 rgba(0,0,0,.2)}
 
     .container{max-width:1100px;margin:0 auto;padding:40px 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
-    
-    /* الكارت الاول كبير لوحده */
     .card-main{grid-column:1 / -1;max-width:700px;margin:0 auto;width:100%}
-    
-    .card-3d{background:var(--card);border-radius:22px;padding:20px;text-align:center;box-shadow:0 10px 20px var(--shadow),0 6px 6px var(--shadow),inset 0 -3px 0 var(--green-dark);transition:.2s;border-top:5px solid var(--green)}
+    .card-3d{background:var(--card);border-radius:22px;padding:20px;text-align:center;box-shadow:0 10px 20px var(--shadow),0 6px 6px var(--shadow),inset 0 -3px 0 var(--green-dark);transition:.2s;border-top:5px solid var(--green);display:flex;flex-direction:column;gap:15px}
     .card-3d:hover{transform:translateY(-8px);box-shadow:0 18px 30px var(--shadow),0 8px 8px var(--shadow),inset 0 -4px 0 var(--green-dark)}
-    .card-3d h2{color:var(--green-dark);margin-bottom:15px;font-size:1.3rem}
-    .card-3d img{width:100%;border-radius:12px;border:3px solid var(--bg);object-fit:cover;min-height:250px;background:#ddd}
-    
+    .card-3d h2{color:var(--green-dark);font-size:1.3rem}
+    .card-3d img{width:100%;border-radius:12px;border:3px solid var(--bg);object-fit:cover;min-height:250px;background:#ddd;cursor:pointer}
     .card-main h2{font-size:1.6rem}
     .card-main img{min-height:400px}
+    
+    .btn-download{background:linear-gradient(180deg,var(--green),var(--green-dark));color:#fff;padding:10px 20px;border-radius:10px;text-decoration:none;font-size:.9rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 3px 0 var(--green-dark);transition:.1s;margin-top:auto}
+    .btn-download:active{transform:translateY(3px);box-shadow:0 0 0 var(--green-dark)}
+    .btn-download svg{width:18px;height:18px;fill:#fff}
 
     @media(max-width:900px){.container{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:600px){.container{grid-template-columns:1fr}}
-
     footer{text-align:center;padding:30px 20px;color:var(--green-dark);font-size:.95rem;font-weight:600;line-height:1.8}
   </style>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-74WRX3P7BW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-74WRX3P7BW');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-74WRX3P7BW');</script>
 </head>
 <body>
   <header>
     <img src="Picsart_26-05-24_01-26-07-243.png" alt="MARWAN MOHAMED" class="logo">
-    <h1>جدول المحاضرات و السكاشن</h1>
+    <h1>جدول المحاضرات والسكاشن</h1>
     <p> 𓆩𝑀𝐴🇪🇸⃟ᬼ𝑅𝑊𝐴𝑁𓆪</p>
-    
     <div class="top-bar">
       <button class="btn btn-theme" id="themeBtn">
         <svg id="themeIcon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <span id="themeText">تفعيل الوضع الليلي</span>
       </button>
-      
-      <!-- زرار الواتساب رجع -->
       <a href="https://wa.me/201229816812" target="_blank" class="btn btn-whatsapp">
         <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0 0 12 .25 11.75 11.75 0 0 0 .25 12a11.6 11.6 0 0 0 1.6 5.82L0 24l6.3-1.65A11.74 11.74 0 0 0 12 23.75 11.86 11.86 0 0 0 20.52 3.48m-8.52 18.3a9.72 9.72 0 0 1-4.95-1.35l-.35-.2-3.74.98.99-3.63-.23-.38a9.7 9.7 0 0 1-1.5-5.2 9.75 9.75 0 0 1 16.4-7.08 9.75 9.75 0 0 1-6.62 16.76m5.38-7.3c-.3-.15-1.76-.87-2.03-.97s-.47-.15-.67.15-.76.97-.94 1.17-.35.22-.64.07a7.88 7.88 0 0 1-3.5-3.08c-.26-.45.26-.42.74-1.39a.64.64 0 0 0 0-.6c-.07-.15-.67-1.62-.92-2.22s-.48-.5-.67-.5h-.57a1.1 1.1 0 0 0-.8.38 3.36 3.36 0 0 0-1.05 2.5 5.9 5.9 0 0 0 1.22 3.1c.15.25 2.1 3.2 5.1 4.5.7.3 1.25.48 1.68.62.7.22 1.34.19 1.85.12.56-.08 1.76-.72 2-1.42s.26-1.3.18-1.42-.3-.23-.6-.38"/></svg>
         <span>التواصل مع الدعم</span>
@@ -76,29 +67,150 @@
   </header>
 
   <div class="container">
-    <!-- 1. الجدول الرسمي لوحده فوق -->
+    <!-- 1. الجدول الرسمي -->
     <div class="card-3d card-main">
       <h2>الجدول الرسمي للكلية</h2>
-      <a href="IMG-20260710-WA0072.jpeg" target="_blank"><img src="IMG-20260710-WA0072.jpeg" alt="الجدول الرسمي للكلية"></a>
+      <a href="schedule1.jpg" target="_blank"><img src="schedule1.jpg" alt="الجدول الرسمي للكلية"></a>
+      <a href="schedule1.jpg" download="الجدول-الرسمي-للكلية.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل الصورة
+      </a>
     </div>
     
-    <!-- الباقي 3 في الصف -->
-    <div class="card-3d"><h2>سكشن 1</h2><a href="section1.jpg" target="_blank"><img src="section1.jpg" alt="سكشن 1"></a></div>
-    <div class="card-3d"><h2>سكشن 2</h2><a href="section2.jpg" target="_blank"><img src="section2.jpg" alt="سكشن 2"></a></div>
-    <div class="card-3d"><h2>سكشن 3</h2><a href="section3.jpg" target="_blank"><img src="section3.jpg" alt="سكشن 3"></a></div>
-    <div class="card-3d"><h2>سكشن 4</h2><a href="section4.jpg" target="_blank"><img src="section4.jpg" alt="سكشن 4"></a></div>
-    <div class="card-3d"><h2>سكشن 5</h2><a href="section5.jpg" target="_blank"><img src="section5.jpg" alt="سكشن 5"></a></div>
-    <div class="card-3d"><h2>سكشن 6</h2><a href="section6.jpg" target="_blank"><img src="section6.jpg" alt="سكشن 6"></a></div>
-    <div class="card-3d"><h2>سكشن 7</h2><a href="section7.jpg" target="_blank"><img src="section7.jpg" alt="سكشن 7"></a></div>
-    <div class="card-3d"><h2>سكشن 8</h2><a href="section8.jpg" target="_blank"><img src="section8.jpg" alt="سكشن 8"></a></div>
-    <div class="card-3d"><h2>سكشن 9</h2><a href="section9.jpg" target="_blank"><img src="section9.jpg" alt="سكشن 9"></a></div>
-    <div class="card-3d"><h2>سكشن 10</h2><a href="section10.jpg" target="_blank"><img src="section10.jpg" alt="سكشن 10"></a></div>
-    <div class="card-3d"><h2>سكشن 11</h2><a href="section11.jpg" target="_blank"><img src="section11.jpg" alt="سكشن 11"></a></div>
-    <div class="card-3d"><h2>سكشن 12</h2><a href="section12.jpg" target="_blank"><img src="section12.jpg" alt="سكشن 12"></a></div>
-    <div class="card-3d"><h2>سكشن 13</h2><a href="section13.jpg" target="_blank"><img src="section13.jpg" alt="سكشن 13"></a></div>
-    <div class="card-3d"><h2>سكشن 14</h2><a href="section14.jpg" target="_blank"><img src="section14.jpg" alt="سكشن 14"></a></div>
-    <div class="card-3d"><h2>سكشن 15</h2><a href="section15.jpg" target="_blank"><img src="section15.jpg" alt="سكشن 15"></a></div>
-                           </div>
+    <!-- 2. سكشن 1 -->
+    <div class="card-3d">
+      <h2>سكشن 1</h2>
+      <a href="section1.jpg" target="_blank"><img src="section1.jpg" alt="سكشن 1"></a>
+      <a href="section1.jpg" download="سكشن-1.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 3. سكشن 2 -->
+    <div class="card-3d">
+      <h2>سكشن 2</h2>
+      <a href="section2.jpg" target="_blank"><img src="section2.jpg" alt="سكشن 2"></a>
+      <a href="section2.jpg" download="سكشن-2.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 4. سكشن 3 -->
+    <div class="card-3d">
+      <h2>سكشن 3</h2>
+      <a href="section3.jpg" target="_blank"><img src="section3.jpg" alt="سكشن 3"></a>
+      <a href="section3.jpg" download="سكشن-3.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 5. سكشن 4 -->
+    <div class="card-3d">
+      <h2>سكشن 4</h2>
+      <a href="section4.jpg" target="_blank"><img src="section4.jpg" alt="سكشن 4"></a>
+      <a href="section4.jpg" download="سكشن-4.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 6. سكشن 5 -->
+    <div class="card-3d">
+      <h2>سكشن 5</h2>
+      <a href="section5.jpg" target="_blank"><img src="section5.jpg" alt="سكشن 5"></a>
+      <a href="section5.jpg" download="سكشن-5.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 7. سكشن 6 -->
+    <div class="card-3d">
+      <h2>سكشن 6</h2>
+      <a href="section6.jpg" target="_blank"><img src="section6.jpg" alt="سكشن 6"></a>
+      <a href="section6.jpg" download="سكشن-6.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 8. سكشن 7 -->
+    <div class="card-3d">
+      <h2>سكشن 7</h2>
+      <a href="section7.jpg" target="_blank"><img src="section7.jpg" alt="سكشن 7"></a>
+      <a href="section7.jpg" download="سكشن-7.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 9. سكشن 8 -->
+    <div class="card-3d">
+      <h2>سكشن 8</h2>
+      <a href="section8.jpg" target="_blank"><img src="section8.jpg" alt="سكشن 8"></a>
+      <a href="section8.jpg" download="سكشن-8.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 10. سكشن 9 -->
+    <div class="card-3d">
+      <h2>سكشن 9</h2>
+      <a href="section9.jpg" target="_blank"><img src="section9.jpg" alt="سكشن 9"></a>
+      <a href="section9.jpg" download="سكشن-9.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 11. سكشن 10 -->
+    <div class="card-3d">
+      <h2>سكشن 10</h2>
+      <a href="section10.jpg" target="_blank"><img src="section10.jpg" alt="سكشن 10"></a>
+      <a href="section10.jpg" download="سكشن-10.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 12. سكشن 11 -->
+    <div class="card-3d">
+      <h2>سكشن 11</h2>
+      <a href="section11.jpg" target="_blank"><img src="section11.jpg" alt="سكشن 11"></a>
+      <a href="section11.jpg" download="سكشن-11.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 13. سكشن 12 -->
+    <div class="card-3d">
+      <h2>سكشن 12</h2>
+      <a href="section12.jpg" target="_blank"><img src="section12.jpg" alt="سكشن 12"></a>
+      <a href="section12.jpg" download="سكشن-12.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 14. سكشن 13 -->
+    <div class="card-3d">
+      <h2>سكشن 13</h2>
+      <a href="section13.jpg" target="_blank"><img src="section13.jpg" alt="سكشن 13"></a>
+      <a href="section13.jpg" download="سكشن-13.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 15. سكشن 14 -->
+    <div class="card-3d">
+      <h2>سكشن 14</h2>
+      <a href="section14.jpg" target="_blank"><img src="section14.jpg" alt="سكشن 14"></a>
+      <a href="section14.jpg" download="سكشن-14.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+    
+    <!-- 16. سكشن 15 -->
+    <div class="card-3d">
+      <h2>سكشن 15</h2>
+      <a href="section15.jpg" target="_blank"><img src="section15.jpg" alt="سكشن 15"></a>
+      <a href="section15.jpg" download="سكشن-15.jpg" class="btn-download">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>تحميل
+      </a>
+    </div>
+  </div>
 
   <footer>اتعمل بحب لطلبة زراعة 💚 <br>تصميم وبرمجة: مروان محمد © 2026</footer>
 
@@ -108,7 +220,6 @@
       const icon = document.getElementById('themeIcon');
       const text = document.getElementById('themeText');
       const html = document.documentElement;
-      
       function setTheme(theme) {
         html.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
@@ -120,15 +231,10 @@
           text.textContent = 'تفعيل الوضع الليلي';
         }
       }
-
       const savedTheme = localStorage.getItem('theme') || 'light';
       setTheme(savedTheme);
-
-      btn.onclick = () => {
-        const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-      };
+      btn.onclick = () => setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
   </script>
 </body>
-</html>
+  </html>
