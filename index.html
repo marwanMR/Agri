@@ -43,7 +43,22 @@
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
-      appId: "5244768a-ef4c-429f-931b-f1dd63ab691d"
+      appId: "5244768a-ef4c-429f-931b-f1dd63ab691d",
+      promptOptions: {
+        slidedown: {
+          prompts: [
+            {
+              type: "push",
+              autoPrompt: true,  // ده اللي هيخليه يظهر لوحده
+              text: {
+                actionMessage: "عايز توصلك مواد الفرقة التانية اول بأول؟",
+                acceptButton: "السماح",
+                cancelButton: "لاحقاً"
+              }
+            }
+          ]
+        }
+      }
     });
   });
 </script>
