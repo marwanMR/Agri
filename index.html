@@ -38,6 +38,15 @@
 
     footer{text-align:center;padding:30px 20px;color:var(--green-dark);font-size:.95rem;font-weight:600;line-height:1.8}
   </style>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "5244768a-ef4c-429f-931b-f1dd63ab691d"
+    });
+  });
+</script>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-74WRX3P7BW"></script>
 <script>
