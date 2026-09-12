@@ -63,7 +63,6 @@
 
     footer{text-align:center;padding:30px 20px;color:var(--green-dark);font-size:.9rem;font-weight:600}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 </head>
 <body>
   <header class="cover-header">
@@ -165,13 +164,12 @@
           <div class="dots-menu" id="menu-${i}">
             <button onclick="sharePdf('${pdf.link}','${pdf.name}')">📤 مشاركة</button>
           </div>
-<canvas id="canvas-${i}" class="pdf-cover"></canvas>
+          <img src="${pdf.cover || 'https://i.postimg.cc/gJKJtT2n/What-are-bacteria-placeholder-1.jpg'}" class="pdf-cover">
           <div class="pdf-name">${pdf.name}</div>
           <button class="btn-main" onclick="openPdfViewer('${pdf.link}','${pdf.name}')">فتح PDF</button>
         </div>
       `).join('');
-      pdfs.forEach((pdf, i) => renderPdfCover(pdf.link, `canvas-${i}`));
- }
+    }
 
     function toggleMenu(i){
       document.querySelectorAll('.dots-menu').forEach(m => m.classList.remove('active'));
@@ -234,33 +232,6 @@
         document.getElementById('pdfGrid').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:red;">فشل تحميل البيانات من الشيت</p>';
       }
     }
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
-
-async function renderPdfCover(pdfUrl, canvasId) {
-  try {
-    const pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
-    const page = await pdfDoc.getPage(1);
-    
-    const canvas = document.getElementById(canvasId);
-    const context = canvas.getContext('2d');
-    
-    const scale = 1.5;
-    const viewport = page.getViewport({ scale: scale });
-    
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    const renderContext = {
-      canvasContext: context,
-      viewport: viewport
-    };
-    
-    await page.render(renderContext).promise;
-  } catch (error) {
-    console.error("Error rendering PDF cover:", error);
-  }
-}
-
 </script>
 </body>
-</html>
+  </html>
